@@ -6,27 +6,51 @@
 setwd("C:/Users/crodger/Documents/GitHub/Exploratory_Data_Analysis/Course_Project_1/")
 
 df<-read.table("./exdata-data-household_power_consumption/household_power_consumption.txt",
-           header=TRUE,
-           sep=";",
-           stringsAsFactors=FALSE)
+               header=TRUE,
+               sep=";",
+               stringsAsFactors=FALSE,
+               na.strings=c("?"))
 
 class(df)
-attributes(df)
+names(df)
 class(df$Date)
+
 
 # install.packages("lubridate")
 library(lubridate)
 df$Date<-dmy(df$Date)
 
-df2<-subset(df,df$Date>=ymd("2007-02-01"))
+df2<-subset(df,df$Date %in% c(ymd("2007-02-01"),ymd("2007-02-02")) )
 dim(df)
 dim(df2)
+head(df2)
+tail(df2)
 
-# 
-# When loading the dataset into R, please consider the following:
-#   
-# We will only be using data from the dates 2007-02-01 and 2007-02-02. One alternative is to read the data from just those dates rather than reading in the entire dataset and subsetting to those dates.
-# 
-# You may find it useful to convert the Date and Time variables to Date/Time classes in R using the strptime() and as.Date() functions.
-# 
-# Note that in this dataset missing values are coded as ?.
+
+df2$datetime<-paste(df2$Date,df2$Time)
+head(df2$datetime)
+class(df2$datetime)
+df2$datetime2<-strptime(df2$datetime,"%F %T")
+class(df2$datetime2)
+
+
+## data have been subset, now work on the graphs
+
+png("plot1.png",width=480,height=480)
+
+hist(df2$Global_active_power,
+     col="red",
+     main="Global Active Power",
+     xlab="Global Active Power (kilowatts)")
+
+
+dev.off()
+
+
+## second plot
+
+plot(df2$datetime2,df2$Global_active_power,
+     type="l",
+     xlab="",
+     ylab="Global Active Power (kilowatts)")
+

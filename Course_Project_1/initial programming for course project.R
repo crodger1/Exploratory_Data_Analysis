@@ -16,17 +16,34 @@ names(df)
 class(df$Date)
 
 
+## use sqldf package to speed up reading data (only read a subset)
+# install.packages("sqldf")
+library(sqldf)
+power<-file("./exdata-data-household_power_consumption/household_power_consumption.txt")
+powerdf<-sqldf('select * from power where "Date" == "01/02/2007" ', file.format= list(sep=";"))
+
+dim(powerdf)
+class(powerdf)
+names(powerdf)
+head(powerdf)
+class(powerdf$Date)
+class(powerdf$Date)
+
+
 # install.packages("lubridate")
 library(lubridate)
+
+## convert date variable to a date format
 df$Date<-dmy(df$Date)
 
+## use new date variable to get subset of data
 df2<-subset(df,df$Date %in% c(ymd("2007-02-01"),ymd("2007-02-02")) )
 dim(df)
 dim(df2)
 head(df2)
 tail(df2)
 
-
+## need time information for some of the graphs -- extract from data
 df2$datetime<-paste(df2$Date,df2$Time)
 head(df2$datetime)
 class(df2$datetime)
@@ -35,6 +52,8 @@ class(df2$datetime2)
 
 
 ## data have been subset, now work on the graphs
+
+## first plot
 
 png("plot1.png",width=480,height=480)
 

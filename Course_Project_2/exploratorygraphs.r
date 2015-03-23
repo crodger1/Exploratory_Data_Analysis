@@ -102,7 +102,7 @@ names(SCC)
           xlab="Year",
           ylab="Total Emissions (Tons)",
           main="Total Emissions Across the United States")
-    def.off()
+    dev.off()
 
 
 
@@ -124,7 +124,7 @@ names(SCC)
           xlab="Year",
           ylab="Total Vehicle Emissions (Tons)",
           main="Total Vehicle Emissions in Baltimore City")
-    def.off()
+    dev.off()
 
 
 
@@ -150,7 +150,7 @@ names(SCC)
     vehiclesum$County_Name[fips=="06037"] <- "Los Angeles County"
   detach(vehiclesum)
 
-  png("plot6.png",width=480,height=480)
+  png("plot6.png",width=580,height=450)
     qplot(data=vehiclesum,year,Emissions,
           facets= . ~ County_Name,
           color=County_Name,
@@ -158,5 +158,5 @@ names(SCC)
           xlab="Year",
           ylab="Total Vehicle Emissions (Tons)",
           main="Total Vehicle Emissions in Baltimore City vs. Los Angeles County")
-  def.off()
+  dev.off()
 

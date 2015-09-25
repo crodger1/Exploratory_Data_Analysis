@@ -1,4 +1,3 @@
-*.txt
 *.zip
 *.csv
 *.rds
@@ -14,3 +13,4 @@
 
 # RStudio files
 .Rproj.user/
+Course_Project_1/exdata-data-household_power_consumption/household_power_consumption.txt

@@ -11,7 +11,7 @@ png("normal_distribution/normal_distribution.png", width = 480, height = 480)
 plot(x_values, y_values, type = "l", lwd = 2, xlab = "x", ylab = "Density", main = "Standard Normal Distribution (mean = 0, sd = 1)")
 
 # Shade the area between -1 and 1 under the curve with a light semi-transparent colour
-polygon(c(-1, seq(-1, 1, length.out = 400), 1), c(0, dnorm(seq(-1, 1, length.out = 400)), 0), col = rgba(0, 0, 1, 0.3))
+polygon(c(-1, seq(-1, 1, length.out = 400), 1), c(0, dnorm(seq(-1, 1, length.out = 400)), 0), col = "#0000FF33")
 
 # Draw a dashed vertical line at the mean (x = 0)
 abline(v = 0, lty = "dashed")
